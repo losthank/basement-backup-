@@ -1,6 +1,2 @@
 # my-first-step
-Just have a try  
-
-##something  
-
-OK,this is just a boring tempt.
+1、依次显示方式：fadeIn+img（style）实现
