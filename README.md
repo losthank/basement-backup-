@@ -90,4 +90,23 @@ function typ(){
 
 </body>
 </html>
+3、
+@keyframes mymove
+{
+from {left:0px;}
+to {left:200px;}
+}
 
+
+@-webkit-keyframes rotate{
+	from{-webkit-transform:rotate(0deg)}
+	to{-webkit-transform:rotate(360deg)}
+	}
+.image{
+	
+	background-repeat: no-repeat;
+
+	-webkit-animation:9.5s linear 0s normal none infinite rotate;
+	position: absolute;
+	
+}
