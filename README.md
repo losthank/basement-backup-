@@ -110,3 +110,35 @@ to {left:200px;}
 	position: absolute;
 	
 }
+4、<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+	<script type="text/javascript">
+	var myHeading=document.querySelector('h1');
+	var myButton=document.querySelector('button');
+	myButton.click=function(){
+	setUserName();
+}
+
+		function setUserName(){
+			var myName=prompt('please input ur name');
+			localStorage.setItem('name',myName);
+			myHeading.innerHTML='moza'+myName;
+		}
+
+if(!localStorage.getItem('name')) {
+  setUserName();
+} else {
+  var storedName = localStorage.getItem('name');
+  myHeading.innerHTML = 'Mozilla is cool, ' + storedName;
+}
+	</script>
+
+</head>
+
+<body>
+<button>click me</button>
+<h1>aaa</h1>
+</body>
+</html>
