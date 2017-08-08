@@ -117,7 +117,7 @@ to {left:200px;}
 	<script type="text/javascript">
 	var myHeading=document.querySelector('h1');
 	var myButton=document.querySelector('button');
-	myButton.click=function(){
+	myButton.onclick=function(){//onclick！！！！！！！
 	setUserName();
 }
 
