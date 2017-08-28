@@ -1,4 +1,5 @@
-# my-first-step
+
+http://blog.csdn.net/esir82/article/details/54847165   # my-first-step
 1、依次显示方式：fadeIn+img（style）实现
 
 <script src="jquery-3.2.1.min.js"></script>
