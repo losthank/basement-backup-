@@ -9,67 +9,59 @@ http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodej
 <head>
 	<title></title>
 	<style type="text/css">
-		img { display: block; margin-bottom: 50px; }
+		li{
+			width: 600px;
+			height: 350px;
+			background-image:url(1.png);
+		}
+		img{
+			display: block;
+		}
 	</style>
 </head>
 <body>
-<img src="-1.png" data-src="1.png">
-<img src="-1.png" data-src="2.png">
-<img src="-1.png" data-src="3.png">
-<img src="-1.png" data-src="4.jpg">
-<img src="-1.png" data-src="2.png">
-<img src="-1.png" data-src="3.png">
-<img src="-1.png" data-src="1.png">
-<img src="-1.png" data-src="2.png">
-<img src="-1.png" data-src="3.png">
+<ul>
+<li><img data-src="1.jpg"></li>
+<li><img data-src="2.png"></li>
+<li><img data-src="3.jpg"></li>
+<li><img data-src="4.jpg"></li>
+<li><img data-src="5.jpg"></li>
+<li><img data-src="6.jpg"></li>
+<li><img data-src="7.jpg"></li>
+<li><img data-src="8.jpg"></li>
+</ul>
 <script type="text/javascript">
-	/*function lazyload(){
-		var imgs = document.getElementsByTagName('img');
-		var n = 0;
-		return function(){
-			var seeHeight = window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight;//兼容性考虑。准确的说三个属性值依次变小
-			var scrollTop = window.scrollTop;//兼容同上，略
-			for(var i = n;n<imgs.length;i+=1){
-				console.log(2);
-				if(imgs[i].offsetTop < seeHeight+scrollTop){//说明该图片在视图内
-					if(imgs[i].getAttribute('src') ===""){
-						console.log(2);
-imgs[i].src = imgs[i].getAttribute('data_src');
-					}
-					n += 1;
-
-				}
-			}
-		}
-	}
-	lazyload()();
-	window.addEventListener('scroll',lazyload(),false);*/
-	function lazyload() {
+	var li = document.getElementsByTagName('li');
   var images = document.getElementsByTagName('img');
-  var n  = 0; // 用于存储图片加载到的位置，避免每次都从第一张图片开始遍历  
-
-
-
-  return function() {
-  	 	    var seeHeight = document.documentElement.clientHeight;
-    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  var n  = 0; // 用于存储图片加载到的位置，避免每次都从第一张图片开始遍历 
+function lazyload() {
+  	var seeHeight = document.documentElement.clientHeight||window.innerHeight;//可视区域高度
+    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;//顶部滚过去的高度
     for(var i = n; i < images.length; i++) {
-   
-      if (images[i].offsetTop < seeHeight + scrollTop) {
-
-        if (images[i].getAttribute('src') === '-1.png') {
-        	
+    if(images[i].offsetTop < scrollTop) continue;//由于加入了防抖，所以拉过头时不需要加载拉过去的全部图片，只加载当前窗口的即可
+      if (images[i].offsetTop < seeHeight + scrollTop) {//说明图片在浏览器窗口
           images[i].src = images[i].getAttribute('data-src');
+          n = n + 1;
+        }else{
+        	break;
         }
-        n = n + 1;
-        console.log(images[3].offsetTop < seeHeight + scrollTop)
       }
     }
-  }
-}
-lazyload(); //初始化首页的页面图片
 
-window.addEventListener('scroll', lazyload(), false);
+lazyload(); //先运行一次，初始化首页的页面图片
+
+window.addEventListener('scroll', debounce(lazyload,1000), false);
+
+function debounce(fn,delay){
+var timer = null;
+var start;
+return function(){
+	clearTimeout(timer);
+	timer = setTimeout(function(){
+		fn.apply(this,arguments)
+	},delay);
+}
+}
 </script>
 </body>
 </html>
