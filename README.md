@@ -65,3 +65,4 @@ return function(){
 </script>
 </body>
 </html>
+if(images[i].offsetTop+li[i].offsetHeight < scrollTop)   注意倒着滚动 是从n开始执行的 会卡住
